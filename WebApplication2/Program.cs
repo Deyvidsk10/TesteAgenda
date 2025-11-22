@@ -1,7 +1,10 @@
 using Agenda.Api.Profiles;
 using Agenda.Api.Services.Contacts;
+using Agenda.Api.Validators.Contacts;
 using Agenda.Infrastructure.Data;
 using Agenda.Infrastructure.Repositories;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -28,7 +31,14 @@ builder.Services.AddDbContext<AgendaDbContext>(options =>
 builder.Services.AddScoped<IContactRepository, ContactRepository>();
 builder.Services.AddScoped<IContactService, ContactService>();
 
+builder.Services.AddControllers();
 
+// Registra o FluentValidation
+builder.Services.AddFluentValidationAutoValidation();      // ativa a validação automática via pipeline
+builder.Services.AddFluentValidationClientsideAdapters();  // se quiser validação client-side (mais pro MVC/Razor, mas ok)
+
+// Registra todos os validators do assembly onde está o CreateContactDtoValidator
+builder.Services.AddValidatorsFromAssemblyContaining<CreateContactDtoValidator>();
 
 var app = builder.Build();
 
