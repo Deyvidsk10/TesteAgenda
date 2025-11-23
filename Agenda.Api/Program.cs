@@ -1,4 +1,4 @@
-ï»¿using Agenda.Api.Profiles;
+using Agenda.Api.Profiles;
 using Agenda.Api.Services.Contacts;
 using Agenda.Api.Validators.Contacts;
 using Agenda.Infrastructure.Data;
@@ -34,25 +34,11 @@ builder.Services.AddScoped<IContactService, ContactService>();
 builder.Services.AddControllers();
 
 // Registra o FluentValidation
-builder.Services.AddFluentValidationAutoValidation();      // ativa a validaÃ§Ã£o automÃ¡tica via pipeline
-builder.Services.AddFluentValidationClientsideAdapters();  // se quiser validaÃ§Ã£o client-side (mais pro MVC/Razor, mas ok)
+builder.Services.AddFluentValidationAutoValidation();      // ativa a validação automática via pipeline
+builder.Services.AddFluentValidationClientsideAdapters();  // se quiser validação client-side (mais pro MVC/Razor, mas ok)
 
-// Registra todos os validators do assembly onde estÃ¡ o CreateContactDtoValidator
+// Registra todos os validators do assembly onde está o CreateContactDtoValidator
 builder.Services.AddValidatorsFromAssemblyContaining<CreateContactDtoValidator>();
-
-// ==== CORS ====
-var corsPolicyName = "AllowFrontend";
-
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(corsPolicyName, policy =>
-    {
-        policy
-            .WithOrigins("http://localhost:5173")   // URL do Vite
-            .AllowAnyHeader()
-            .AllowAnyMethod();
-    });
-});
 
 var app = builder.Build();
 
@@ -64,9 +50,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-// ðŸ‘‡ ATIVA O CORS AQUI
-app.UseCors("AllowFrontend");
 
 app.UseAuthorization();
 

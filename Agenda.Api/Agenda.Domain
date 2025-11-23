@@ -1,0 +1,6 @@
+﻿namespace Agenda.Api
+{
+    public class Agenda
+    {
+    }
+}

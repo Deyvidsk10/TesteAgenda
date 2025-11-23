@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Compile Remove="Validators\Contacts\UpdateContactDto.cs" />
-    <Compile Remove="WeatherForecast.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Agenda.Application\Agenda.Application.csproj" />
     <ProjectReference Include="..\Agenda.Domain\Agenda.Domain.csproj" />
     <ProjectReference Include="..\Agenda.Infrastructure\Agenda.Infrastructure.csproj" />
   </ItemGroup>

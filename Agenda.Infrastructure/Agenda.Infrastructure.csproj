@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Agenda.Application\Agenda.Application.csproj" />
     <ProjectReference Include="..\Agenda.Domain\Agenda.Domain.csproj" />
   </ItemGroup>
 
