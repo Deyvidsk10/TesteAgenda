@@ -10,7 +10,6 @@ namespace Agenda.Infrastructure.Factories
         {
             var optionsBuilder = new DbContextOptionsBuilder<AgendaDbContext>();
 
-            // MESMA connection string do appsettings.json
             var connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=AgendaDb;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True";
 
             optionsBuilder.UseSqlServer(connectionString);
