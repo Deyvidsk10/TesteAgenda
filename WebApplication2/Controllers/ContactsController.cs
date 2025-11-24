@@ -1,4 +1,5 @@
 ﻿using Agenda.Api.Dtos.Contacts;
+using Agenda.Api.Models;
 using Agenda.Api.Services.Contacts;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,17 +21,48 @@ namespace Agenda.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ContactResponseDto>>> GetAll()
         {
-            var contacts = await _service.GetAllAsync();
-            return Ok(contacts);
+            try
+            {
+                var contacts = await _service.GetAllAsync();
+                return Ok(contacts);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Erro inesperado ao listar contatos");
+
+                return StatusCode(500, new ErrorResponse
+                {
+                    Message = "Erro inesperado ao listar contatos."
+                });
+            }
         }
 
         [HttpGet("{id:guid}")]
         public async Task<ActionResult<ContactResponseDto>> GetById(Guid id)
         {
-            var contact = await _service.GetByIdAsync(id);
-            if (contact == null) return NotFound();
+            try
+            {
+                var contact = await _service.GetByIdAsync(id);
 
-            return Ok(contact);
+                if (contact == null)
+                {
+                    return NotFound(new ErrorResponse
+                    {
+                        Message = "Contato não encontrado."
+                    });
+                }
+
+                return Ok(contact);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Erro inesperado ao buscar contato por ID");
+
+                return StatusCode(500, new ErrorResponse
+                {
+                    Message = "Erro inesperado ao buscar contato."
+                });
+            }
         }
 
         [HttpPost]
@@ -44,7 +76,20 @@ namespace Agenda.Api.Controllers
             catch (InvalidOperationException ex)
             {
                 _logger.LogWarning(ex, "Erro de regra de negócio ao criar contato");
-                return BadRequest(new { error = ex.Message });
+
+                return BadRequest(new ErrorResponse
+                {
+                    Message = ex.Message
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Erro inesperado ao criar contato");
+
+                return StatusCode(500, new ErrorResponse
+                {
+                    Message = "Erro inesperado ao criar contato."
+                });
             }
         }
 
@@ -54,24 +99,63 @@ namespace Agenda.Api.Controllers
             try
             {
                 var updated = await _service.UpdateAsync(id, dto);
-                if (updated == null) return NotFound();
+
+                if (updated == null)
+                {
+                    return NotFound(new ErrorResponse
+                    {
+                        Message = "Contato não encontrado."
+                    });
+                }
 
                 return Ok(updated);
             }
             catch (InvalidOperationException ex)
             {
                 _logger.LogWarning(ex, "Erro de regra de negócio ao atualizar contato");
-                return BadRequest(new { error = ex.Message });
+
+                return BadRequest(new ErrorResponse
+                {
+                    Message = ex.Message
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Erro inesperado ao atualizar contato");
+
+                return StatusCode(500, new ErrorResponse
+                {
+                    Message = "Erro inesperado ao atualizar contato."
+                });
             }
         }
 
         [HttpDelete("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var deleted = await _service.DeleteAsync(id);
-            if (!deleted) return NotFound();
+            try
+            {
+                var deleted = await _service.DeleteAsync(id);
 
-            return NoContent();
+                if (!deleted)
+                {
+                    return NotFound(new ErrorResponse
+                    {
+                        Message = "Contato não encontrado."
+                    });
+                }
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Erro inesperado ao excluir contato");
+
+                return StatusCode(500, new ErrorResponse
+                {
+                    Message = "Erro inesperado ao excluir contato."
+                });
+            }
         }
     }
 }
