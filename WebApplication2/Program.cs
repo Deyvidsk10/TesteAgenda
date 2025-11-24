@@ -34,8 +34,8 @@ builder.Services.AddScoped<IContactService, ContactService>();
 builder.Services.AddControllers();
 
 // Registra o FluentValidation
-builder.Services.AddFluentValidationAutoValidation();      // ativa a validação automática via pipeline
-builder.Services.AddFluentValidationClientsideAdapters();  // se quiser validação client-side (mais pro MVC/Razor, mas ok)
+builder.Services.AddFluentValidationAutoValidation();      
+builder.Services.AddFluentValidationClientsideAdapters();  
 
 // Registra todos os validators do assembly onde está o CreateContactDtoValidator
 builder.Services.AddValidatorsFromAssemblyContaining<CreateContactDtoValidator>();
@@ -65,7 +65,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// 👇 ATIVA O CORS AQUI
+
 app.UseCors("AllowFrontend");
 
 app.UseAuthorization();
