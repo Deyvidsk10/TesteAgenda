@@ -6,7 +6,7 @@ Projeto desenvolvido como parte de um desafio técnico em .NET, consistindo em u
 
 ##  Preview da Aplicação
 
-<img width="958" height="535" alt="Tela Inicial" src="https://github.com/user-attachments/assets/18acda44-db02-494b-8224-440b5a100f53" />
+<img width="913" height="461" alt="Tela Inicial" src="https://github.com/user-attachments/assets/0121b42c-8225-4f2c-908a-b7573e52bfef" />
 
 
 ##  Visão Geral
