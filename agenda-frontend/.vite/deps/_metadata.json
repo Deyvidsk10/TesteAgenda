@@ -1,0 +1,34 @@
+{
+  "hash": "3d841c6f",
+  "configHash": "ddf415b6",
+  "lockfileHash": "91d7ef52",
+  "browserHash": "c766b40b",
+  "optimized": {
+    "vue": {
+      "src": "../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
+      "file": "vue.js",
+      "fileHash": "a3184971",
+      "needsInterop": false
+    },
+    "primevue/config": {
+      "src": "../../node_modules/primevue/config/config.esm.js",
+      "file": "primevue_config.js",
+      "fileHash": "a9e86477",
+      "needsInterop": false
+    },
+    "primevue/toastservice": {
+      "src": "../../node_modules/primevue/toastservice/toastservice.esm.js",
+      "file": "primevue_toastservice.js",
+      "fileHash": "8981ad6f",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-OBP3INPR": {
+      "file": "chunk-OBP3INPR.js"
+    },
+    "chunk-MOTEMUGC": {
+      "file": "chunk-MOTEMUGC.js"
+    }
+  }
+}

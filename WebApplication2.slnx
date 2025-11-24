@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Agenda.Application/Agenda.Application.csproj" Id="00a2e6c5-a8a4-4687-a03e-c48f01a47197" />
+  <Project Path="Agenda.Domain/Agenda.Domain.csproj" Id="9212d891-80b2-4bb7-afe4-a284513b8335" />
+  <Project Path="Agenda.Infrastructure/Agenda.Infrastructure.csproj" Id="a7d5da21-ca2e-4987-a262-066a531ec25d" />
+  <Project Path="WebApplication2/Agenda.Api.csproj" />
+</Solution>
